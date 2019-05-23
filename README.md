@@ -20,3 +20,6 @@ Make sure the necessary system dependencies are installed:
 
 -------------------------------------
 More details to come...
+
+
+Added parameters for italian language and set it as default
