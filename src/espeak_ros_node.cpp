@@ -64,8 +64,8 @@ int main( int argc, char** argv ) {
     capitals = espeak_GetParameter(espeakCAPITALS, 0);
     wordgap = espeak_GetParameter(espeakWORDGAP, 0);
 
-    voice_num = 1;
-    dialect_num = 1;
+    voice_num = 8;
+    dialect_num = 8;
 
     // Fetch (and set if param could not be retrieved) ROS parameters
     if (priv_n.getParam("voice", voice_num) == false) {
@@ -192,7 +192,7 @@ int main( int argc, char** argv ) {
     f = boost::bind(&dyn_cfg_callback, _1, _2);
     server.setCallback(f);
 
-    ros::Subscriber sub = n.subscribe("/espeak_node/speak_line", 20, espeak_callback);
+    ros::Subscriber sub = n.subscribe("/chatter", 1, espeak_callback);
 
     ros::spin();
     while (n.ok());
@@ -272,6 +272,8 @@ std::string getVoiceName(int v) {
 			break;
 		case 7: voice.assign("brazil");
 			break;
+		case 8: voice.assign("italian");
+			break;
 		default: voice.assign("english");
 			break;
 	}
@@ -295,6 +297,8 @@ std::string getDialectName(int d) {
 		case 6: dialect.assign("en-sc");
 			break;
 		case 7: dialect.assign("pt-br");
+			break;
+		case 8: dialect.assign("it");
 			break;
 		default: dialect.assign("en-uk");
 			break;
